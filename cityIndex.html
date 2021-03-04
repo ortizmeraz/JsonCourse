@@ -1,0 +1,30 @@
+<div id="output" class="oput">Nothing</div>
+
+<script>
+    var myContainer = "";
+    var myJson;
+
+    var a = new XMLHttpRequest();  // This is creating the variable that reads the JSON file
+    a.open('GET', "CityMetrics.json", true); // This is reading the JSON FILE 
+    a.onreadystatechange = function () {  //When the JSON file is open it starts a function 
+
+        if (this.readyState == 4) {     //When the file is read, code 4, this IF is True
+            var obj = JSON.parse(this.responseText);   // This line parses the response text which is a string into a proper JSON 
+            initCities(obj);
+            // console.log(obj);   // TADAAAAAAA
+        }
+    }
+
+    function initCities(jsonObj){
+        myJson = jsonObj;
+        // console.log(typeof myJson);  // This line shows what type of object we got
+        for(key in myJson["City"]){
+            console.log(key)
+            myContainer+= myJson["City"][key].name +"<br>" //Display the list of cities in HTML
+        }
+        document.getElementById("output").innerHTML = myContainer;                          // The looped data is integrated into the HTML
+
+    }
+        a.send();        // Closes the XMLHttpRequest                                         
+
+</script>
