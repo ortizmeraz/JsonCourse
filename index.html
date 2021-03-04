@@ -2,14 +2,16 @@
 
 <script>
     var myContainer = "";
-    var jsonData='[{"_id":"4815","index":6,"age":28,"eyeColor":"blue1","name":{"first":"Rosario","last":"Good"}},{"_id":"1234","index":5,"age":18,"eyeColor":"blue2","name":{"first":"Carmen","last":"Good"}},{"_id":"7845","index":4,"age":38,"eyeColor":"blue3","name":{"first":"Rita","last":"Good"}}]';
-    console.log(typeof jsonData);
-    var obj = JSON.parse(jsonData);
-    console.log(obj);
-    // obj.name.first="Carmen"
 
-    for(i=0;i<obj.length;i++){
-        myContainer += obj[i].name.first + " " + obj[i].name.last + "<br>";
+    var a = new XMLHttpRequest();  // This is creating the variable that reads the JSON file
+    a.open('GET',"Data.json", true); // This is reading the JSON FILE 
+    a.onreadystatechange = function(){  //When the JSON file is open it starts a function 
+        
+        if(this.readyState == 4){     //When the file is read, code 4, this IF is True
+            var obj = JSON.parse(this.responseText);   // This line parses the response text which is a string into a proper JSON 
+            console.log(obj);   // TADAAAAAAA
+        }
     }
-    document.getElementById("output").innerHTML = myContainer;
+    a.send();
+    // console.log(a);
 </script>
