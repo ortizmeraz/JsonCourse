@@ -15,15 +15,15 @@
         }
     }
     
-    function initJson(jsonObj){
-        myJson = jsonObj;
-        console.log("Using the Var outside");
-        console.log(myJson);
-        console.log("Using the Var outside");
-        for(i=0;i<myJson.length;i++){
-            myContainer += myJson[i].name.first + " " + myJson[i].name.last + "<br>";
+    function initJson(jsonObj){  // This creates a function to pull out the json
+        myJson = jsonObj;          // The Data is asigned to an internal variable, so we don't destroy it by accident
+        console.log("Using the Var outside");   //Testing
+        console.log(myJson);                    //Testing
+        console.log("Using the Var outside");   //Testing
+        for(i=0;i<myJson.length;i++){                                                       // Loop with the data
+            myContainer += myJson[i].name.first + " " + myJson[i].name.last + "<br>";           // loopy actions in the data to display them in the HTML
         }
-        document.getElementById("output").innerHTML = myContainer;
+        document.getElementById("output").innerHTML = myContainer;                          // The looped data is integrated into the HTML
     }
-    a.send();
+    a.send();        // Closes the XMLHttpRequest                                         
 </script>
